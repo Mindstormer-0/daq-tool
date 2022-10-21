@@ -5,8 +5,8 @@ import sys, subprocess
 from formatmodule import bcolors, bsymbols, prints, labels
 
 modules_base = ['wheel', 'halo', 'GitPython']
-modules_dependencies = ['pyusb', 'pandas', 'bitarray', 'sqlite3', 'grafanalib']
-modules_alt_name = {'GitPython': 'git', 'pyusb': 'usb.core', 'grafanalib': 'grafanalib.core'}
+modules_dependencies = ['pyusb', 'pandas', 'bitarray', 'sqlite3', 'dash', 'dash-daq', 'dash-bootstrap-templates']
+modules_alt_name = {'GitPython': 'git', 'pyusb': 'usb.core', 'dash-daq': 'dash_daq', 'dash-bootstrap-templates': 'dash_bootstrap_templates'}
 project_url = "https://github.com/Mindstormer-0/daquery-tool.git"
 fmt = prints()
 fail = False

@@ -3,7 +3,7 @@
 import argparse
 import subprocess
 from modules.formatmodule import bcolors, bsymbols, prints, labels
-from modules.database import ini_database
+#from modules.database import ini_database
 
 def handle_args():
     parser = argparse.ArgumentParser(description='Run foss.py help for more information. Run foss.py deps to install dependencies.')
@@ -17,13 +17,9 @@ def switch(args):
             print(f"{bcolors.OKBLUE}{bsymbols.info} {bcolors.OKBLUE}{bcolors.BOLD}{labels.prog_name}: Starting dependency check tool...{bcolors.ENDC}")
             subprocess.call("python ./modules/updater.py", shell=True)
             return
-        case "data" | "d" | "collect":
-            print(f"{bcolors.OKBLUE}{bsymbols.info} {bcolors.OKBLUE}{bcolors.BOLD}{labels.prog_name}: Starting gator-data collection tool...{bcolors.ENDC}")
-            subprocess.call("python ./modules/gator-data-to-csv.py", shell=True)
-            return
-        case "sim":
-            print(f"{bcolors.OKBLUE}{bsymbols.info} {bcolors.OKBLUE}{bcolors.BOLD}{labels.prog_name}: Starting gator-data simulator...{bcolors.ENDC}")
-            subprocess.call("python ./modules/gator-data-simulator.py", shell=True)
+        case "data" | "d" | "collect" | "run":
+            print(f"{bcolors.OKBLUE}{bsymbols.info} {bcolors.OKBLUE}{bcolors.BOLD}{labels.prog_name}: Starting data collection tool...{bcolors.ENDC}")
+            subprocess.call("python ./modules/collect.py", shell=True)
             return
         case "clean" | "cleanup" | "remove":
             print(f"{bcolors.OKBLUE}{bsymbols.info} {bcolors.OKBLUE}{bcolors.BOLD}{labels.prog_name}: Clean output directory...{bcolors.ENDC}")
@@ -46,7 +42,7 @@ def switch(args):
 
 def main():
 	p = prints()
-	ini_database()
+	#ini_database()
 	args = handle_args()
 	p.title()
 	switch(args)
