@@ -25,33 +25,62 @@ def run_dash():
     BGVID = app.get_asset_url('bg.mp4')
     BGPOSTER = app.get_asset_url('poster.png')
 
-    # Supply the data
-    x = np.random.sample(100)
-    y = np.random.sample(100)
-    z = np.random.choice(a=['a', 'b', 'c'], size=100)
+    # Supply the data TODO: dummy data for now
+    df = pd.read_csv(
+    "https://raw.githubusercontent.com/plotly/datasets/master/finance-charts-apple.csv")
+    df.columns = [col.replace("AAPL.", "") for col in df.columns]
 
-    # Dataframes
-    df_tv = pd.DataFrame({'x': x, 'y': y, 'z': z}, index=range(100))
-    df_bf = pd.DataFrame({'x': x, 'y': y, 'z': z}, index=range(100))
-    df_mv = pd.DataFrame({'x': x, 'y': y, 'z': z}, index=range(100))
-    df_co2 = pd.DataFrame({'x': x, 'y': y, 'z': z}, index=range(100))
-    df_o2 = pd.DataFrame({'x': x, 'y': y, 'z': z}, index=range(100))
+    # Individual dataframes
+    df_tv = df
+    df_bf = df
+    df_mv = df
+    df_co2 = df
+    df_o2 = df
 
-    # Configure the graphs
-    fig_tv = px.scatter(df_tv, x="x", y="y", height=300,)
-    fig_tv.update_layout(autosize=True, margin=dict(l=20, r=40, t=10, b=0))
+    # Instantiate the graphs
+    fig_tv = go.Figure()
+    fig_bf = go.Figure()
+    fig_mv = go.Figure()
+    fig_co2 = go.Figure()
+    fig_o2 = go.Figure()
+    figures = [fig_tv, fig_bf, fig_mv, fig_co2, fig_o2]
 
-    fig_bf = px.scatter(df_bf, x="x", y="y", height=300,)
-    fig_bf.update_layout(autosize=True, margin=dict(l=20, r=40, t=10, b=0))
-
-    fig_mv = px.scatter(df_mv, x="x", y="y", height=300,)
-    fig_mv.update_layout(autosize=True, margin=dict(l=20, r=40, t=10, b=0))
-
-    fig_co2 = px.scatter(df_co2, x="x", y="y", height=300,)
-    fig_co2.update_layout(autosize=True, margin=dict(l=20, r=40, t=10, b=0))
-
-    fig_o2 = px.scatter(df_o2, x="x", y="y", height=300,)
-    fig_o2.update_layout(autosize=True, margin=dict(l=20, r=40, t=10, b=0))
+    # Add range sliders
+    for fig in figures:
+        fig.add_trace(go.Scatter(x=list(df.Date), y=list(df.High)))
+        fig.update_layout(autosize=True, margin=dict(l=20, r=40, t=20, b=10))
+        fig.update_layout(
+            xaxis=dict(
+                rangeselector=dict(
+                    bgcolor="#839496",
+                    font=dict(
+                        color="white"),
+                    buttons=list([
+                        dict(count=1,
+                            label="1m",
+                            step="month",
+                            stepmode="backward"),
+                        dict(count=6,
+                            label="6m",
+                            step="month",
+                            stepmode="backward"),
+                        dict(count=1,
+                            label="YTD",
+                            step="year",
+                            stepmode="todate"),
+                        dict(count=1,
+                            label="1y",
+                            step="year",
+                            stepmode="backward"),
+                        dict(step="all")
+                    ])
+                ),
+                rangeslider=dict(
+                    visible=True
+                ),
+                type="date"
+            )
+        )
 
     # Configure web elements
     videobg = html.Div(
