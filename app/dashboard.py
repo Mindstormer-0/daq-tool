@@ -22,6 +22,7 @@ def run_dash():
 
     # Resources
     LOGO = app.get_asset_url('logo.png')
+    BGVID = app.get_asset_url('bg.mp4')
 
     # Supply the data
     x = np.random.sample(100)
@@ -56,12 +57,12 @@ def run_dash():
                     dbc.Row(
                         [
                             dbc.Col(html.Img(src=LOGO, height="35px")),
-                            #dbc.Col(dbc.NavbarBrand("Logo", className="ms-2")),
+                            #dbc.Col(dbc.NavbarBrand("Title", className="ms-2")),
                         ],
                         align="center",
                         className="g-0",
                     ),
-                    href="https://plotly.com",
+                    href="https://calebcollar.dev",
                     style={"textDecoration": "none"},
                 ),
                 dbc.NavbarToggler(id="navbar-toggler2", n_clicks=0),
@@ -81,8 +82,17 @@ def run_dash():
         className="mb-5",
     )
 
+    videobg = html.Div(
+        [
+            html.Video(id='bgvid', src=BGVID,
+                       autoPlay='autoPlay', loop='loop', muted='muted', className='fullscreen-bg__video')
+        ]
+    )
+
+    # Configure the layout
+
     app.layout = html.Div(
-        [navbar]
+        [navbar, videobg]
     )
 
     # Use a callback to toggle the collapse on small screens
