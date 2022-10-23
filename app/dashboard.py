@@ -30,23 +30,51 @@ def run_dash():
     y = np.random.sample(100)
     z = np.random.choice(a=['a', 'b', 'c'], size=100)
 
-    df1 = pd.DataFrame({'x': x, 'y': y, 'z': z}, index=range(100))
+    # Dataframes
+    df_tv = pd.DataFrame({'x': x, 'y': y, 'z': z}, index=range(100))
+    df_bf = pd.DataFrame({'x': x, 'y': y, 'z': z}, index=range(100))
+    df_mv = pd.DataFrame({'x': x, 'y': y, 'z': z}, index=range(100))
+    df_co2 = pd.DataFrame({'x': x, 'y': y, 'z': z}, index=range(100))
+    df_o2 = pd.DataFrame({'x': x, 'y': y, 'z': z}, index=range(100))
+
+    # Configure the graphs
+    fig_tv = px.scatter(df_tv, x="x", y="y", height=300,)
+    fig_tv.update_layout(autosize=True, margin=dict(l=20, r=40, t=10, b=0))
+
+    fig_bf = px.scatter(df_bf, x="x", y="y", height=300,)
+    fig_bf.update_layout(autosize=True, margin=dict(l=20, r=40, t=10, b=0))
+
+    fig_mv = px.scatter(df_mv, x="x", y="y", height=300,)
+    fig_mv.update_layout(autosize=True, margin=dict(l=20, r=40, t=10, b=0))
+
+    fig_co2 = px.scatter(df_co2, x="x", y="y", height=300,)
+    fig_co2.update_layout(autosize=True, margin=dict(l=20, r=40, t=10, b=0))
+
+    fig_o2 = px.scatter(df_o2, x="x", y="y", height=300,)
+    fig_o2.update_layout(autosize=True, margin=dict(l=20, r=40, t=10, b=0))
 
     # Configure web elements
+    videobg = html.Div(
+        [
+            html.Video(id='bgvid', src=BGVID, poster=BGPOSTER,
+                       autoPlay='autoPlay', loop='loop', muted='muted', className='fullscreen-bg__video')
+        ]
+    )
+
     # Single navitem
-    nav_item = dbc.NavItem(dbc.NavLink("Link", href="#"))
+    nav_item = dbc.NavItem(dbc.NavLink("Github", href='https://github.com/Mindstormer-0/daquery-tool'))
 
     # Dropdown menu
     dropdown = dbc.DropdownMenu(
         children=[
-            dbc.DropdownMenuItem("Entry 1"),
-            dbc.DropdownMenuItem("Entry 2"),
+            dbc.DropdownMenuItem("Vertical"),
+            dbc.DropdownMenuItem("Grid"),
             dbc.DropdownMenuItem(divider=True),
-            dbc.DropdownMenuItem("Entry 3"),
+            dbc.DropdownMenuItem("Reset"),
         ],
         nav=True,
         in_navbar=True,
-        label="Menu",
+        label="View",
     )
 
     # Navbar with logo
@@ -57,53 +85,115 @@ def run_dash():
                     # Use row and col to control vertical alignment of logo / brand
                     dbc.Row(
                         [
-                            dbc.Col(html.Img(src=LOGO, height="35px")),
+                            dbc.Col(html.Img(src=LOGO, height='35px')),
                             #dbc.Col(dbc.NavbarBrand("Title", className="ms-2")),
                         ],
-                        align="center",
-                        className="g-0",
+                        align='center',
+                        className='g-0',
                     ),
-                    href="https://calebcollar.dev",
-                    style={"textDecoration": "none"},
+                    href='#',
+                    style={'textDecoration': 'none'},
                 ),
-                dbc.NavbarToggler(id="navbar-toggler2", n_clicks=0),
+                dbc.NavbarToggler(id='navbar-toggler2', n_clicks=0),
                 dbc.Collapse(
                     dbc.Nav(
                         [nav_item, dropdown],
-                        className="ms-auto",
+                        className='ms-auto',
                         navbar=True,
                     ),
-                    id="navbar-collapse2",
+                    id='navbar-collapse2',
                     navbar=True,
                 ),
             ],
         ),
-        color="dark",
+        color='dark',
         dark=True,
-        className="mb-5",
+        className='mb-5',
     )
 
-    videobg = html.Div(
+    # Cards with graphs
+    tidal_volume = dbc.Container(
         [
-            html.Video(id='bgvid', src=BGVID, poster=BGPOSTER,
-                       autoPlay='autoPlay', loop='loop', muted='muted', className='fullscreen-bg__video')
+            dbc.Card(
+                [
+                    dbc.CardHeader("Tidal Volume:"),
+                    dcc.Graph(figure=fig_tv),
+                ],
+                className='card mb-3 g-0 d-flex')
         ]
     )
 
-    # Configure the layout
+    breathing_frequency = dbc.Container(
+        [
+            dbc.Card(
+                [
+                    dbc.CardHeader("Breathing Frequency:"),
+                    dcc.Graph(figure=fig_bf),
+                ],
+                className='card mb-3 g-0 d-flex')
+        ]
+    )
 
+    minute_ventilation = dbc.Container(
+        [
+            dbc.Card(
+                [
+                    dbc.CardHeader("Minute Ventilation:"),
+                    dcc.Graph(figure=fig_mv),
+                ],
+                className='card mb-3 g-0 d-flex')
+        ]
+    )
+
+    CO2 = dbc.Container(
+        [
+            dbc.Card(
+                [
+                    dbc.CardHeader("CO2 Level:"),
+                    dcc.Graph(figure=fig_co2),
+                ],
+                className='card mb-3 g-0 d-flex')
+        ]
+    )
+
+    O2 = dbc.Container(
+        [
+            dbc.Card(
+                [
+                    dbc.CardHeader("O2 Level:"),
+                    dcc.Graph(figure=fig_o2),
+                ],
+                className='card mb-3 g-0 d-flex')
+        ]
+    )
+
+    # Spacer
+    spacer = dbc.Container(className='spacer')
+
+    # Footer
+    footer = dbc.Container(className='footer')
+
+    # Configure the layout order
     app.layout = html.Div(
-        [navbar, videobg]
+        [
+            navbar,
+            videobg,
+            tidal_volume,
+            breathing_frequency,
+            minute_ventilation,
+            CO2,
+            O2,
+            footer
+        ]
     )
 
     # Use a callback to toggle the collapse on small screens
-
     def toggle_navbar_collapse(n, is_open):
         if n:
             return not is_open
         return is_open
 
-    # the same function (toggle_navbar_collapse) is used in all three callbacks
+    # The same function can be used in all callbacks
     for i in [2]:
         app.callback(
             Output(f"navbar-collapse{i}", "is_open"),

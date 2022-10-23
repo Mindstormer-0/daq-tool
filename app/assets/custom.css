@@ -21,3 +21,16 @@
     z-index: -100;
     background-size: cover;
 }
+
+.card {
+    --param-placehold: foo;
+}
+
+.spacer {
+    --param-placehold: foo;
+}
+
+.footer {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
