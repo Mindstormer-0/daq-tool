@@ -4,7 +4,7 @@ def run_dash():
     from dash import Dash, dcc, html, Input, Output, State
     from dash_bootstrap_templates import load_figure_template
     from dash_bootstrap_components._components.Container import Container
-    import datetime
+    import time, datetime
     import plotly.graph_objs as go
     import plotly.express as px
     import dash_bootstrap_components as dbc
@@ -83,6 +83,7 @@ def run_dash():
         )
 
     # Configure web elements
+    # Video background element
     videobg = html.Div(
         [
             html.Video(id='bgvid', src=BGVID, poster=BGPOSTER,
@@ -135,6 +136,7 @@ def run_dash():
                 ),
             ],
         ),
+        id='navbar',
         color='dark',
         dark=True,
         className='mb-5',
@@ -203,17 +205,33 @@ def run_dash():
     footer = dbc.Container(className='footer')
 
     # Configure the layout order
-    app.layout = html.Div(
+    app.layout = dbc.Container(
         [
-            navbar,
-            videobg,
-            tidal_volume,
-            breathing_frequency,
-            minute_ventilation,
-            CO2,
-            O2,
-            footer
-        ]
+            dcc.Loading(
+                [
+                    html.Div(
+                        [
+                            navbar,
+                            videobg,
+                        ]
+                    ),
+                ],
+                id="loading-1",
+                type="dot",
+                fullscreen=True,
+                color='#268bd2',
+                style={'backgroundColor': '#002b36'}
+            ),
+            dbc.Container(
+                [
+                    dcc.Loading(tidal_volume, color='#268bd2'),
+                    dcc.Loading(breathing_frequency, color='#268bd2'),
+                    dcc.Loading(minute_ventilation, color='#268bd2'),
+                    dcc.Loading(CO2, color='#268bd2'),
+                    dcc.Loading(O2, color='#268bd2')
+                ]
+            )
+        ], fluid=True, style={'padding': '0'}
     )
 
     # Use a callback to toggle the collapse on small screens

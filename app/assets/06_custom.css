@@ -1,0 +1,73 @@
+/* assets/custom.css */
+/* General style overrides */
+
+.fullscreen-bg {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: -100;
+}
+
+.fullscreen-bg__video {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    -o-filter: blur(15px);
+    filter: blur(15px);
+    width: auto;
+    height: auto;
+    z-index: -100;
+    background-size: cover;
+}
+
+.card {
+    --param-placehold: foo;
+}
+
+.spacer {
+    --param-placehold: foo;
+}
+
+.footer {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+._dash-loading {
+  margin: auto;
+  display: none;
+}
+
+._dash-loading::after {
+  display: none;
+}
+
+@keyframes slideInFromLeft {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slam
+{
+  0% { transform: translateX(0%); }
+  15% { transform: translateX(-7%); }
+  30% { transform: translateX(0%); }
+  45% { transform: translateX(-2%); }
+  60% { transform: translateX(0%); }
+  75% { transform: translateX(-1%); }
+  90% { transform: translateX(0%); }
+  100% { transform: translateX(0%); }
+}
+
+#navbar {
+  animation: 0.25s ease-in 1s 1 both slideInFromLeft, 0.8s ease-out 1.25s slam;
+}
