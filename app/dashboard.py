@@ -23,6 +23,7 @@ def run_dash():
     # Fetch static Resources
     LOGO = app.get_asset_url('logo.png')
     BGVID = app.get_asset_url('bg.mp4')
+    BGPOSTER = app.get_asset_url('poster.png')
 
     # Supply the data
     x = np.random.sample(100)
@@ -84,7 +85,7 @@ def run_dash():
 
     videobg = html.Div(
         [
-            html.Video(id='bgvid', src=BGVID,
+            html.Video(id='bgvid', src=BGVID, poster=BGPOSTER,
                        autoPlay='autoPlay', loop='loop', muted='muted', className='fullscreen-bg__video')
         ]
     )
