@@ -20,7 +20,7 @@ def run_dash():
                url_theme], update_title=None)  # type: ignore
     load_figure_template(template_theme)
 
-    # Resources
+    # Fetch static Resources
     LOGO = app.get_asset_url('logo.png')
     BGVID = app.get_asset_url('bg.mp4')
 
