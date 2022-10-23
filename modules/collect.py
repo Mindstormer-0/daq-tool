@@ -1,5 +1,5 @@
 from database import ini_database
-from dashboard import run_dash
+from .. app.dashboard import run_dash
 
 def main():
   ini_database()
