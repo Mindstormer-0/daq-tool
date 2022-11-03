@@ -1,8 +1,12 @@
+import os
 import sqlite3
 import pandas as pd
 
 def ini_database():
-  conn = sqlite3.connect('./data/database.db')
+  os.makedirs('./data', exist_ok=True)
+  path = os.path.abspath('./data/database.db')
+  print(path)
+  sqlite3.connect(path)
 
 class dbhelper:
   global db
