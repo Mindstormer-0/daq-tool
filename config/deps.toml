@@ -1,4 +1,6 @@
-### Defines the modules that are installed by pip/self updater function ###
+# Written by Caleb C. in 2022 for Neurophysiology Lab | Carthage College #
+# Defines the modules that are installed by pip/self updater function #
+
 # Project url is supplied for checking the latest release
 project_url = "https://github.com/Mindstormer-0/daquery-tool.git"
 
