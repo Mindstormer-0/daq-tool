@@ -2,6 +2,7 @@
 # Written by Caleb C. in 2022 for Carthage Space Sciences | WSGC | NASA
 import argparse
 import subprocess
+from modules.concurrency import launch_process_and_stream_log
 from modules.formatmodule import bcolors, bsymbols, prints, labels
 #from modules.database import ini_database
 
@@ -23,10 +24,11 @@ def switch(args):
         case "data" | "d" | "collect" | "run":
             print(f"{bcolors.OKBLUE}{bsymbols.info} {bcolors.OKBLUE}{bcolors.BOLD}{labels.prog_name}: Starting data collection tool...{bcolors.ENDC}")
             subprocess.call("python ./driver.py", shell=True)
+            #subprocess.Popen("python ./driver.py", shell=True)
             return
         case "clean" | "cleanup" | "remove":
-            print(f"{bcolors.OKBLUE}{bsymbols.info} {bcolors.OKBLUE}{bcolors.BOLD}{labels.prog_name}: Clean output directory...{bcolors.ENDC}")
-            subprocess.call("python ./modules/cleanup.py", shell=True)
+            print(f"{bcolors.OKBLUE}{bsymbols.info} {bcolors.OKBLUE}{bcolors.BOLD}{labels.prog_name}: Remove previously installed modules...{bcolors.ENDC}")
+            subprocess.call("python ./modules/remover.py", shell=True)
             return
         case "wisdom" | "zen":
             print(f"{bcolors.OKBLUE}{bsymbols.info} {bcolors.OKBLUE}{bcolors.BOLD}{labels.prog_name}: Providing you with design ethic...{bcolors.ENDC}")

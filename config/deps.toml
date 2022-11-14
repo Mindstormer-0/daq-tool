@@ -1,0 +1,16 @@
+### Defines the modules that are installed by pip/self updater function ###
+# Project url is supplied for checking the latest release
+project_url = "https://github.com/Mindstormer-0/daquery-tool.git"
+
+# Base modules are installed and checked before the rest of the modules
+modules_base = ['wheel', 'halo', 'GitPython']
+
+# Modules required for daq-tool function
+modules_dependencies = ['pyusb', 'pandas', 'bitarray', 'sqlite3', 'dash', 'dash-daq', 'dash-bootstrap-templates']
+
+# Alternative names for modules during test process such as 'pyusb' -> 'usb.core'
+[modules_alt_name]
+GitPython = 'git'
+pyusb = 'usb.core'
+dash-daq = 'dash_daq'
+dash-bootstrap-templates = 'dash_bootstrap_templates'
