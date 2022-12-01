@@ -129,5 +129,9 @@ dmypy.json
 .pyre/
 data/database.db
 
-#VSCode
+# VSCode
 .vscode/*
+
+# Bootstraping
+launcher/tmp/
+launcher/Python/
