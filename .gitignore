@@ -133,5 +133,6 @@ data/database.db
 .vscode/*
 
 # Bootstraping
+launcher/Git/
 launcher/tmp/
 launcher/Python/
