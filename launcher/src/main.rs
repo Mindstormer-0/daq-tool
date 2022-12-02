@@ -1,5 +1,8 @@
 //Bootstraping driver for downloading python interpreter
 use reqwest::Client;
+use std::process::Command;
+use std::fs;
+use std::path::PathBuf;
 mod downloader;
 mod unziper;
 
@@ -20,5 +23,15 @@ async fn main() {
     unziper::deflate(path).await;
     println!("Complete.");
     println!("Launching DAQ-Tool CLI...");
-    
+    Command::new("./Python/python.exe")
+        .arg("--version")
+        .spawn()
+        .expect("Python interpreter failed to launch...");
+
+    let daqcli_rel = PathBuf::from("../daqcli.py");
+    //let daqcli_abs = fs::canonicalize(daqcli_rel).unwrap();
+
+    Command::new("./Python/python.exe")
+        .spawn()
+        .expect("Python interpreter failed to launch...");
 }

@@ -1,8 +1,8 @@
-#!/usr/bin/env python
+#!./launcher/Python
 # Written by Caleb C. in 2022 for Carthage Space Sciences | WSGC | NASA
 import argparse
 import subprocess
-from modules.concurrency import launch_process_and_stream_log
+#from modules.concurrency import launch_process_and_stream_log
 from modules.formatmodule import bcolors, bsymbols, prints, labels
 #from modules.database import ini_database
 
