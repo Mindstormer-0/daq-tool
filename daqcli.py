@@ -1,4 +1,3 @@
-#!./launcher/Python
 # Written by Caleb C. in 2022 for Carthage Space Sciences | WSGC | NASA
 import argparse
 import subprocess
