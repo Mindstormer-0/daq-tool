@@ -8,7 +8,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 const config = {
   title: "daq-tool docs",
   tagline: "daq-tool docs!",
-  url: "https://mindstormer-0.github.io/daq-tool/",
+  url: "https://mindstormer-0.github.io",
   baseUrl: "/daq-tool/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
