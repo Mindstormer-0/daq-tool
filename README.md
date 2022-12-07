@@ -1,1 +1,1 @@
-# daquery-tool
+# daq-tool
