@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdaq_tool_docs=self.webpackChunkdaq_tool_docs||[]).push([[6778],{9507:o=>{o.exports=JSON.parse('{"permalink":"/daq-tool/blog/tags/facebook","page":1,"postsPerPage":10,"totalPages":1,"totalCount":1,"blogDescription":"Blog","blogTitle":"Blog"}')}}]);
