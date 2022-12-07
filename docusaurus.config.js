@@ -6,10 +6,10 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: "My Site",
-  tagline: "Dinosaurs are cool",
-  url: "https://your-docusaurus-test-site.com",
-  baseUrl: "/",
+  title: "daq-tool docs",
+  tagline: "daq-tool docs!",
+  url: "https://mindstormer-0.github.io/daq-tool/",
+  baseUrl: "/daq-tool/",
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",
   favicon: "img/favicon.ico",
