@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkdaq_tool_docs=self.webpackChunkdaq_tool_docs||[]).push([[5544],{7226:a=>{a.exports=JSON.parse('{"label":"hola","permalink":"/daq-tool/blog/tags/hola","allTagsPath":"/daq-tool/blog/tags","count":1}')}}]);
