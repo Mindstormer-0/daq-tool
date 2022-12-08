@@ -36,11 +36,10 @@ def switch(args):
             print(f"{bcolors.OKBLUE}{bsymbols.info} {bcolors.FAIL}{bcolors.BOLD}{labels.prog_name}: Unknown argument...{bcolors.ENDC}")
             print(
                 f"{bcolors.OKBLUE}{bsymbols.info} {bcolors.OKGREEN}{labels.prog_name}: Available commands:{bcolors.ENDC}")
-            print(f"    deps{bcolors.ENDC}")
-            print(f"    data{bcolors.ENDC}")
+            print(f"    update{bcolors.ENDC}")
+            print(f"    collect{bcolors.ENDC}")
             print(f"    clean{bcolors.ENDC}")
             print(f"    sim{bcolors.ENDC}")
-            print(f"    wisdom{bcolors.ENDC}")
             return
 
 
